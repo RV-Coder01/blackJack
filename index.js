@@ -1,10 +1,27 @@
-let firstCard=Math.floor(Math.random()*10)+2;
-let secondCard=Math.floor(Math.random()*10)+2;
-let card=[firstCard,secondCard];
-let sum=firstCard+secondCard;
+function getRandomNumber(){
+    randomNum=Math.floor(Math.random()*13)+1;
+    if (randomNum ===1){
+        return 11;
+    }else if (randomNum>=10){
+        return 10;
+    }
+    return randomNum;
+}
+let card=[];
+let sum=0;
 let hasBlackJack=false;
-let isAlive=true;
+let isAlive=false;
 let message="";
+
+function startGame(){
+    let firstCard=getRandomNumber();
+    let secondCard=getRandomNumber();
+    card=[firstCard,secondCard];
+    sum=firstCard+secondCard;
+    isAlive=true;
+    document.getElementById("new-card").textContent="New Card";
+    renderClick();
+}
 function renderClick(){
     document.getElementById("cards").textContent="Cards: "+card.join(", ");
     document.getElementById("result").textContent = "Sum: " + sum ;
@@ -13,22 +30,19 @@ function renderClick(){
     }else if (sum === 21){
         hasBlackJack=true;
         message="Wohoo! You've got Blackjack!";
-        card=[];
-        sum=0;
+        document.getElementById("new-card").textContent="Disabled";
     }else{
         isAlive=false;
         message="You are out of the game!!";
         document.getElementById("message").textContent="You can't draw a new card!!";
         document.getElementById("new-card").textContent="Disabled";
-        card=[];
-        sum=0;
     }
     document.getElementById("message").textContent=message;
 }
 
 function newCard(){
     if (isAlive && !hasBlackJack){
-        let newCard=Math.floor(Math.random()*10)+2;
+        let newCard=getRandomNumber();
         sum+=newCard;
         card.push(newCard);
         renderClick();

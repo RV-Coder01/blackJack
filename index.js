@@ -1,3 +1,13 @@
+let player={
+    name: "Rakshika",
+    chips: 0
+};
+let card=[];
+let sum=0;
+let hasBlackJack=false;
+let isAlive=false;
+let message="";
+
 function getRandomNumber(){
     randomNum=Math.floor(Math.random()*13)+1;
     if (randomNum ===1){
@@ -7,17 +17,14 @@ function getRandomNumber(){
     }
     return randomNum;
 }
-let card=[];
-let sum=0;
-let hasBlackJack=false;
-let isAlive=false;
-let message="";
 
 function startGame(){
     let firstCard=getRandomNumber();
     let secondCard=getRandomNumber();
+    hasBlackJack=false;
     card=[firstCard,secondCard];
     sum=firstCard+secondCard;
+    player.chips += sum;
     isAlive=true;
     document.getElementById("new-card").textContent="New Card";
     renderClick();
@@ -25,6 +32,7 @@ function startGame(){
 function renderClick(){
     document.getElementById("cards").textContent="Cards: "+card.join(", ");
     document.getElementById("result").textContent = "Sum: " + sum ;
+    document.getElementById("pl-game").textContent=player.name + ":" + "$" + player.chips ;
     if (sum<21 && isAlive && !hasBlackJack){
         message="You are still in the game!!";
     }else if (sum === 21){
@@ -36,6 +44,7 @@ function renderClick(){
         message="You are out of the game!!";
         document.getElementById("message").textContent="You can't draw a new card!!";
         document.getElementById("new-card").textContent="Disabled";
+        player.chips -= sum;
     }
     document.getElementById("message").textContent=message;
 }
@@ -44,6 +53,7 @@ function newCard(){
     if (isAlive && !hasBlackJack){
         let newCard=getRandomNumber();
         sum+=newCard;
+        player.chips += newCard;
         card.push(newCard);
         renderClick();
     }

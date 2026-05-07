@@ -5,6 +5,6 @@
     "description": "A Chrome extension to track leads",
     "action": {
         "default_popup": "index.html",
-        "default_icon": "icon.jpeg"
+        "default_icon": "icon.png"
     }
 }

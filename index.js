@@ -2,6 +2,7 @@ const text=document.getElementById("input-txt");
 let inputButton= document.getElementById("save-btn");
 const ulEl=document.getElementById("ul-el");
 let myLeads=[];
+let tabBtn=document.getElementById("tab-btn");
 
 const leadsFromLocalStorage=JSON.parse(localStorage.getItem("myLeads"));
 
@@ -29,6 +30,15 @@ inputButton.addEventListener("click", function(){
         render(myLeads);
         text.value="";
  }
+)
+
+tabBtn.addEventListener("click", function(){
+    chrome.tabs.query({active:true,currentWindow:true}, function(tab){
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads));
+        render(myLeads);
+    })
+}
 )
 
 function deleteItems(){

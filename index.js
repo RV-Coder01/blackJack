@@ -34,7 +34,7 @@ inputButton.addEventListener("click", function(){
 
 tabBtn.addEventListener("click", function(){
     chrome.tabs.query({active:true,currentWindow:true}, function(tab){
-        myLeads.push(tabs[0].url)
+        myLeads.push(tab[0].url)
         localStorage.setItem("myLeads", JSON.stringify(myLeads));
         render(myLeads);
     })

@@ -1,9 +1,9 @@
-const text=document.getElementById("input-txt");
-let inputButton= document.getElementById("save-btn");
-const ulEl=document.getElementById("ul-el");
 let myLeads=[];
-let tabBtn=document.getElementById("tab-btn");
-let deleteBtn=document.getElementById("delete-btn");
+const text=document.getElementById("input-txt");
+const inputButton= document.getElementById("save-btn");
+const ulEl=document.getElementById("ul-el");
+const tabBtn=document.getElementById("tab-btn");
+const deleteBtn=document.getElementById("delete-btn");
 
 const leadsFromLocalStorage=JSON.parse(localStorage.getItem("myLeads"));
 

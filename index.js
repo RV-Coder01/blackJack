@@ -3,6 +3,7 @@ let inputButton= document.getElementById("save-btn");
 const ulEl=document.getElementById("ul-el");
 let myLeads=[];
 let tabBtn=document.getElementById("tab-btn");
+let deleteBtn=document.getElementById("delete-btn");
 
 const leadsFromLocalStorage=JSON.parse(localStorage.getItem("myLeads"));
 
@@ -38,14 +39,13 @@ tabBtn.addEventListener("click", function(){
         localStorage.setItem("myLeads", JSON.stringify(myLeads));
         render(myLeads);
     })
-}
-)
+})
 
-function deleteItems(){
+deleteBtn.addEventListener("click",function(){
     localStorage.clear();
     myLeads=[];
     ulEl.innerHTML="";
-}
+})
 
 
 

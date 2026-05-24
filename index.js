@@ -54,3 +54,15 @@ deleteBtn.addEventListener("click",function(){
 // boxContent.addEventListener("click", function(){
 //     console.log(boxContent.textContent);
 // })
+
+
+// function generateSentence(desc,arr){{
+//     let sample=""
+//     for(let i=0;i<arr.length;i++){
+//         sample+=arr[i]
+//         if(i<arr.length-1){
+//             sample+=", "
+//         }
+//     }
+//     let sentence= `The ${arr.length} ${desc} are ${sample}.`
+// }}

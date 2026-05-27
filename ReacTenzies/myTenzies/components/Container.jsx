@@ -4,6 +4,7 @@ import Die from "./Die"
 
 export default function Container() {
     const [dice, setDice] = React.useState(generate())
+    const [chance, setChance] = React.useState(0)
 
     const gameWon = dice.every(die => die.isHeld) &&
         dice.every(die => die.value === dice[0].value)
@@ -41,6 +42,7 @@ export default function Container() {
 
     function Roll() {
         if (!gameWon) {
+            setChance(oldChance => oldChance + 1)
             setDice(oldDice => {
                 return (
                     oldDice.map(oldDie => {
@@ -52,6 +54,7 @@ export default function Container() {
             })
         }
         else {
+            setChance(0)
             setDice(generate())
         }
     }
@@ -62,6 +65,7 @@ export default function Container() {
             <div className="container">
                 {diceElements}
             </div>
+            <h2>{gameWon ? `You took ${chance} to win` :`You did used ${chance} till the time!!`}</h2>
             <button id="btn" onClick={Roll}>{bttnText}</button>
         </>
 

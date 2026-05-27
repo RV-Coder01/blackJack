@@ -1,8 +1,17 @@
 import React from "react"
 import Die from "./Die"
+// import Confetti from "react-confetti"
 
 export default function Container() {
     const [dice, setDice] = React.useState(generate())
+
+    const gameWon = dice.every(die => die.isHeld) &&
+        dice.every(die => die.value === dice[0].value)
+
+    const bttnText = gameWon ? "New Game" : "Roll"
+
+    // const { width, height } = useWindowSize();
+
     function generate() {
         const arr = []
         for (let i = 0; i < 10; i++) {
@@ -18,7 +27,7 @@ export default function Container() {
     function toggleDie(id) {
         setDice(oldDice => {
             return oldDice.map(oldDie =>
-                oldDie.id == id ? { ...oldDie, isHeld: !oldDie.isHeld } : oldDie
+                oldDie.id == id ? { ...oldDie, isHeld: oldDie.isHeld ? oldDie.isHeld : !oldDie.isHeld } : oldDie
             )
         })
     }
@@ -31,23 +40,29 @@ export default function Container() {
     )
 
     function Roll() {
-        setDice(oldDice => {
-            return (
-                oldDice.map(oldDie => {
-                    return oldDie.isHeld ?
-                        oldDie :
-                        { ...oldDie, value:Math.ceil(Math.random() * 6) }
-                })
-            )
-        })
+        if (!gameWon) {
+            setDice(oldDice => {
+                return (
+                    oldDice.map(oldDie => {
+                        return oldDie.isHeld ?
+                            oldDie :
+                            { ...oldDie, value: Math.ceil(Math.random() * 6) }
+                    })
+                )
+            })
+        }
+        else {
+            setDice(generate())
+        }
     }
 
     return (
         <>
+            {/* {gameWon && <Confetti  width={width} height={height} />} */}
             <div className="container">
                 {diceElements}
             </div>
-            <button id="btn" onClick={Roll}>Roll</button>
+            <button id="btn" onClick={Roll}>{bttnText}</button>
         </>
 
     )

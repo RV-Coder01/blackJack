@@ -35,8 +35,9 @@ main {
 #btn{
     background-color: #5035FF;
     height: 40px;
-    width: 50px;
+    width: auto;
     color: white;
+    padding: 8px 16px;
     border: none;
     margin-top: 24px;
     display: block;

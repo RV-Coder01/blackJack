@@ -3,17 +3,25 @@ import Die from "./Die"
 // import Confetti from "react-confetti"
 
 export default function Container() {
-    const [dice, setDice] = React.useState(generate())
+    const [dice, setDice] = React.useState(() => generate())
     const [chance, setChance] = React.useState(0)
+    const buttonRef = React.useRef(null)
 
     const gameWon = dice.every(die => die.isHeld) &&
         dice.every(die => die.value === dice[0].value)
 
     const bttnText = gameWon ? "New Game" : "Roll"
 
+
+    React.useEffect(() => {
+        if (gameWon) {
+            buttonRef.current.focus()
+        }
+
+    }, [gameWon])
     // const { width, height } = useWindowSize();
 
-    function generate() {
+    function generate() {``
         const arr = []
         for (let i = 0; i < 10; i++) {
             arr.push({
@@ -61,12 +69,13 @@ export default function Container() {
 
     return (
         <>
+            <h1>{gameWon ? `Congratulations` : `This is tenzies game, roll the dice and Try you Luck!!`}</h1>
             {/* {gameWon && <Confetti  width={width} height={height} />} */}
             <div className="container">
                 {diceElements}
             </div>
             <h2>{gameWon ? `You took ${chance} to win` :`You did used ${chance} till the time!!`}</h2>
-            <button id="btn" onClick={Roll}>{bttnText}</button>
+            <button id="btn"  ref={buttonRef} onClick={Roll}>{bttnText}</button>
         </>
 
     )

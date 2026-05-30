@@ -1,0 +1,84 @@
+body{
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    background-color: #0B2434;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#index{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h4{
+    margin-top: 0;
+    color: grey;
+    font-size: 18px;
+}
+
+.language-list{
+    margin-top: 32px;
+    display: flex;
+    gap:8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.language{
+    padding: 8px 16px;
+}
+
+#word{
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+
+#wordElement{
+    display: flex;
+    padding-top:8px;
+    align-content: center;
+    flex-direction: row;
+    height: 40px;
+    width: 40px;
+    background-color: #323232;
+    justify-content : center;
+    font-size : 1.125rem;
+    border-bottom: 1px solid #F9F4DA
+}
+
+#keyboard{
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    width: 250px;
+}
+
+#key-alpha{
+    height:32px;
+    width: 32px;
+    /* background-color: orange; */
+}
+
+#newGameBtn{
+    width:200px;
+    height:48px;
+    font-size:24px;
+    color: white;
+    background-color:blue;
+    margin-top:32px;
+}
